@@ -1,0 +1,108 @@
+﻿{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+		<input type="hidden" name="id" value="{$dados[0].id}" />
+	    <input type="hidden" name="idfornecedor" value="{$dados[0].idfornecedor}" />
+
+	    <h1 class="titulo-pag">Fornecedores</h1>
+ 
+	    <label>Fornecedores:</label>
+        <select name="cliente">
+        	{section name=i loop=$dadosCliente}
+            	<option value="{$dadosCliente[i].id}" {if $dados[0].idfornecedor == $dadosCliente[i].id}selected="selected"{/if}>{$dadosCliente[i].fornecedor}</option>
+            {/section}
+        </select>
+
+	    <label>*Nome:</label>
+	    <input type="text" name="nome" value="{$dados[0].nome}" />
+
+	    <label>*E-mail:</label>
+	    <input type="text" name="email" value="{$dados[0].email}" />
+
+	    <label>*DDD:</label>
+	    <input type="text" maxlength="3" name="dddtel" value="{$dados[0].dddtel}" />
+
+	    <label>*Telefone:</label>
+	    <input type="text" name="telefone" class="telefone" value="{$dados[0].telefone}" />
+
+	    <label>*DDD:</label>
+	    <input type="text" maxlength="3" name="dddcel" value="{$dados[0].dddcel}" />
+
+	    <label>*Celular:</label>
+	    <input type="text" name="celular" class="telefone" value="{$dados[0].celular}" />
+
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label class="no-top">* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+{literal}	
+	<script>
+		function checa()
+		{
+			frm = document.frm_cadastro;
+			msg = "Preencha o campo ";
+			
+			if(trim(frm.nome.value)=="")
+			{
+				alert(msg + "Nome!");
+				frm.nome.focus();
+				return false;
+			}
+			
+			if(trim(frm.email.value) == "")
+			{
+				alert(msg + "Email!");
+				frm.email.focus();
+				return false;
+			}
+
+			if(trim(frm.dddtel.value) == "")
+			{
+				alert(msg + "DDD TELEFONE!");
+				frm.dddtel.focus();
+				return false;
+			}
+
+			if(trim(frm.telefone.value) == "")
+			{
+				alert(msg + "Telefone!");
+				frm.telefone.focus();
+				return false;
+			}
+
+			if(trim(frm.dddcel.value) == "")
+			{
+				alert(msg + "DDD CELULAR!");
+				frm.dddcel.focus();
+				return false;
+			}
+
+			if(trim(frm.celular.value) == "")
+			{
+				alert(msg + "Celular!");
+				frm.celular.focus();
+				return false;
+			}		
+
+			frm.submit();
+		}
+
+		$(".telefone")
+		.mask("9999-9999?9")
+		.focusout(function (event) {  
+		    var target, phone, element;  
+		    target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+		    phone = target.value.replace(/\D/g, '');
+		    element = $(target);  
+		    element.unmask();  
+		    if(phone.length > 10) {  
+		        element.mask("99999-999?9");  
+		    } else {  
+		        element.mask("9999-9999?9");  
+		    }  
+		});
+	</script>
+{/literal}
+
+{include file="admin/rodape.html"}

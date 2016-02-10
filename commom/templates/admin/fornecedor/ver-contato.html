@@ -1,0 +1,33 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+
+			<h1 class="titulo-pag">Contato Fornecedor</h1>
+			
+			<label><strong>Nome:</strong></label>
+			<input type="text" disabled value="{$dados[0].nome}">	
+
+			<label><strong>E-mail:</strong></label>
+			<div class="campo-link-input"><a href="mailto:{$dados[0].email}">{$dados[0].email}</a></div>
+
+			<label><strong>Telefone:</strong></label>
+			<div class="campo-link-input"><a href="tel:{$dados[0].dddtel}{$dados[0].telefone}">( {$dados[0].dddtel} ) {$dados[0].telefone}</a></div>
+
+            <label><strong>Celular:</strong></label>
+            <div class="campo-link-input"><a href="tel:{$dados[0].dddcel}{$dados[0].celular}">( {$dados[0].dddcel} ) {$dados[0].celular}</a></div>
+    
+            <br>
+            <div class="bt-acoes-interna">
+                {if $menuEdiUsuario}
+                    <a class="btn-form" href="adm_contato_fornecedor.php?acao=editar&id={$dados[0].id}">editar</a> 
+                {/if}
+                {if $menuExcUsuario}
+                    <a class="btn-form" href="#" onclick="exclui({$dados[0].id}, 'contato_fornecedor')">excluir</a>
+                {/if}
+                <a href="javascript:history.back()" class="btn-form" ><< voltar</a>
+            </div>
+		</form>
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

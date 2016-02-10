@@ -1,0 +1,56 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        {if $dados}
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_fornecedor.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+            <br>
+            <table class="table">
+                <h1 class="titulo-pag">Consultar Fornecedores</h1>
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Nome</th>
+                        <th class="hidden-xs-down">E-mail</th>
+                        <th class="hidden-xs-down">Cel</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dados}
+                        <tr class="hover-tr">
+                            <td>{$dados[i].nome}</td>
+                            <td class="hidden-xs-down"><a href="{$dados[i].siteCompleto}" target="_blank">{$dados[i].email}</a></td>
+                            <td class="hidden-xs-down"><a href="tel:{$dados[i].dddcel}{$dados[i].celular}">({$dados[i].dddcel}) {$dados[i].celular}</a></td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes mg-lf-80">
+                                    {if $menuPesUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato_fornecedor.php?acao=visualizar&id={$dados[i].id}">visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato_fornecedor.php?acao=editar&id={$dados[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="#" onclick="exclui({$dados[i].id}, 'contato_fornecedor')">excluir</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_fornecedor.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+        {else}
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

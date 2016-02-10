@@ -1,0 +1,93 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+            <h1 class="titulo-pag">Visualizar Fornecedor</h1>
+
+			<label><strong>Fornecedor:</strong></label>
+			<input type="text" disabled value="{$dados[0].fornecedor}">	
+
+			<label><strong>Site:</strong></label>
+			<div class="campo-link-input"><a href="http://{$dados[0].site}" target="_blank">{$dados[0].site}</a></div>
+
+			<label><strong>CNPJ:</strong></label>
+			<input type="text" disabled value="{$dados[0].cnpj}"> 
+
+			<label><strong>Endereço:</strong></label>
+			<input type="text" disabled value="{$dados[0].endereco}">	
+
+			<label><strong>Complemento:</strong></label>
+			<input type="text" disabled value="{$dados[0].complemento}">	
+
+            <label><strong>CEP:</strong></label>
+            <input type="text" disabled value="{$dados[0].cep}">    
+
+			<label><strong>Bairro:</strong></label>
+			<input type="text" disabled value="{$dados[0].bairro}"> 
+
+			<label><strong>Cidade:</strong></label>
+			<input type="text" disabled value="{$dados[0].cidade}">	
+
+			<label><strong>Estado:</strong></label>
+			<input type="text" disabled value="{$dados[0].estado}">	
+
+			<label><strong>Telefone:</strong></label>
+			<div class="campo-link-input"><a href="tel:{$dados[0].dddtel}{$dados[0].telefone}">( {$dados[0].dddtel} ) {$dados[0].telefone}</a></div>
+
+			<label><strong>Servicos:</strong></label>
+			<input type="text" disabled value="{$dados[0].servicos}">	
+            
+            <div class="bt-acoes-interna">
+                {if $menuEdiUsuario}
+                    <a class="btn-form" href="adm_fornecedor.php?acao=editar&id={$dados[0].id}">editar</a> 
+                {/if}
+                {if $menuExcUsuario}
+                    <a class="btn-form" href="#" onclick="exclui({$dados[0].id}, 'fornecedor')">excluir</a>
+                {/if}
+            </div>
+		</form>
+        
+        {if $dadosContato} 
+		<!-- Contato -->
+            <table class="table">
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Nome</th>
+                        <th class="hidden-xs-down">E-mail</th>
+                        <th class="hidden-xs-down">Celular</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dadosContato}
+                        <tr class="hover-tr">
+                            <td><a href="adm_contato_fornecedor.php?acao=visualizar&id={$dadosContato[i].id}">{$dadosContato[i].nome}</a> </td>
+                            <td class="hidden-xs-down"><a href="mailto:{$dadosContato[i].email}" target="_blank">{$dadosContato[i].email}</a></td>
+                            <td class="hidden-xs-down"><a href="tel:{$dadosContato[i].dddcel}{$dadosContato[i].celular}">({$dadosContato[i].dddcel}) {$dadosContato[i].celular}</a></td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes mg-lf-80">
+                                    {if $menuPesUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato_fornecedor.php?acao=visualizar&id={$dadosContato[i].id}">visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato_fornecedor.php?acao=editar&id={$dadosContato[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="#" onclick="exclui({$dadosContato[i].id}, 'contato_fornecedor')">excluir</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+        <!-- Fim Contato -->
+        {/if}
+
+        <br>
+		<a href="adm_fornecedor.php?acao=pesquisar" class="btn-form" ><< voltar</a>
+
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

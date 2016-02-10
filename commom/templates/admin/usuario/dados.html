@@ -1,0 +1,87 @@
+﻿{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+	    <input type="hidden" name="id" value="{$dados[0].id}" />
+
+	    <h1 class="titulo-pag">Usuarios</h1>
+
+	    <label>*Pefil:</label>
+        <select name="perfil">
+            <option value="A" {if $dados[0].perfil == "A"}selected="selected"{/if}>Administrador</option>
+            <option value="M" {if $dados[0].perfil == "M"}selected="selected"{/if}>Marketing</option>
+            <option value="F" {if $dados[0].perfil == "F"}selected="selected"{/if}>Financeiro</option>
+            <option value="D" {if $dados[0].perfil == "D"}selected="selected"{/if}>Desenvolvedor</option>
+        </select>
+
+	    <label>*Nome do usuário:</label>
+	    <input type="text" name="nome" size="50" value="{$dados[0].nome}" />
+	    
+	    <label>*E-mail do usuário:</label>
+	    <input type="text" name="email" size="50" value="{$dados[0].email}" />
+	    
+	    {if $smarty.get.acao != editar}
+		    <label>*Senha:</label>
+		    <input type="password" name="senha" size="30" value="{$dados[0].senha}" />
+		    
+		    <label>*Repetir Senha:</label>
+		    <input type="password" name="senha2" size="30" value="{$dados[0].senha}" />
+	    {/if}
+	    
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label class="no-top">* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+	{literal}	
+		<script>
+
+			function checa()
+			{
+				frm = document.frm_cadastro;
+				msg = "Preencha o campo ";
+				
+				if(trim(frm.nome.value)=="")
+				{
+					alert(msg + "Nome!");
+					frm.nome.focus();
+					return false;
+				}
+				
+				if(trim(frm.email.value) == "")
+				{
+					alert(msg + "E-mail!");
+					frm.email.focus();
+					return false;
+				}
+				
+				if(!email(frm.email, 'E-mail inválido!'))
+					return false;
+
+				if(!frm.id.value){
+					if(trim(frm.senha.value) == "")
+					{
+						alert(msg + "Senha!");
+						frm.senha.focus();
+						return false;
+					}
+					
+					if(trim(frm.senha2.value) == "")
+					{
+						alert(msg + "Repetir Senha!");
+						frm.senha2.focus();
+						return false;
+					}
+					
+					if(trim(frm.senha.value) != trim(frm.senha2.value))
+					{
+						alert("As senhas estão diferentes!");
+						return false;
+					}
+				} 
+
+				frm.submit();
+			}
+		</script>
+	{/literal}
+
+{include file="admin/rodape.html"}

@@ -1,0 +1,135 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+
+            <h1 class="titulo-pag">Visualizar Cliente</h1>
+            
+			<label><strong>Tipo cliente:</strong></label>
+            <input type="text" disabled value="{$dados[0].status}">    
+
+            <label><strong>Empresa:</strong></label>
+			<input type="text" disabled value="{$dados[0].empresa}">	
+
+            <label><strong>Razão social:</strong></label>
+            <input type="text" disabled value="{$dados[0].razao}">    
+
+			<label><strong>Site:</strong></label>
+			<div class="campo-link-input"><a href="http://{$dados[0].site}" target="_blank">{$dados[0].site}</a></div>
+
+			<label><strong>CNPJ:</strong></label>
+			<input type="text" disabled value="{$dados[0].cnpj}"> 
+
+            <label><strong>Mapa:</strong></label>
+            <div class="campo-link-input"><a href="{$dados[0].mapa}" target="_blank">{$dados[0].mapa}</a></div>
+
+			<label><strong>Endereço:</strong></label>
+			<input type="text" disabled value="{$dados[0].endereco}">	
+
+			<label><strong>Complemento:</strong></label>
+			<input type="text" disabled value="{$dados[0].complemento}">	
+
+            <label><strong>CEP:</strong></label>
+            <input type="text" disabled value="{$dados[0].cep}">    
+
+			<label><strong>Bairro:</strong></label>
+			<input type="text" disabled value="{$dados[0].bairro}"> 
+
+			<label><strong>Cidade:</strong></label>
+			<input type="text" disabled value="{$dados[0].cidade}">	
+
+			<label><strong>Estado:</strong></label>
+			<input type="text" disabled value="{$dados[0].estado}">	
+
+			<label><strong>Telefone:</strong></label>
+			<div class="campo-link-input"><a href="tel:{$dados[0].dddtel}{$dados[0].telefoneLimpo}">( {$dados[0].dddtel} ) {$dados[0].telefone}</a></div>
+
+			<label><strong>Servicos:</strong></label>
+			<input type="text" disabled value="{$dados[0].servicos}">	
+            
+            <div class="bt-acoes-interna">
+                {if $menuEdiUsuario}
+                    <a class="btn-form" href="adm_cliente.php?acao=editar&id={$dados[0].id}">editar</a> 
+                {/if}
+                {if $menuExcUsuario}
+                    <a class="btn-form" href="#" onclick="exclui({$dados[0].id}, 'cliente')">excluir</a>
+                {/if}
+            </div>
+		</form>
+        {if $dadosContato} 
+		<!-- Contato --><br><br>
+            <h1 class="titulo-pag">Visualizar contato do cliente</h1>
+            <table class="table">
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Nome</th>
+                        <th class="hidden-xs-down">E-mail</th>
+                        <th class="hidden-xs-down">Celular</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dadosContato}
+                        <tr class="hover-tr">
+                            <td><a href="adm_contato.php?acao=visualizar&id={$dadosContato[i].id}">{$dadosContato[i].nome}</a></td>
+                            <td class="hidden-xs-down"><a href="mailto:{$dadosContato[i].email}" target="_blank">{$dadosContato[i].email}</a></td>
+                            <td class="hidden-xs-down"><a href="tel:{$dadosContato[i].dddcel}{$dadosContato[i].celularLimpo}">({$dadosContato[i].dddcel}) {$dadosContato[i].celular}</a></td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes mg-lf-80">
+                                    {if $menuPesUsuario}
+                                        <!-- <a class="cor-tr-btn btn-acoes" href="adm_contato.php?acao=visualizar&id={$dados[0].id}&idContato={$dadosContato[i].id}"> -->
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato.php?acao=visualizar&id={$dadosContato[i].id}">
+                                        visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato.php?acao=editar&idContato={$dadosContato[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="#" onclick="exclui({$dadosContato[i].id}, 'contato')">excluir</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+        <!-- Fim Contato -->
+        {/if}
+
+        {if $dadosAnotacao} 
+        <!-- Contato -->
+            <br><br>
+            <h1 class="titulo-pag">Visualizar anotação do cliente</h1>
+            <table class="table">
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Titulo</th>
+                        <th>Tipo</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dadosAnotacao}
+                        <tr class="hover-tr">
+                            <td><a href="adm_anotacao.php?acao=visualizar&id={$dadosAnotacao[i].id}">{$dadosAnotacao[i].titulo}</a></td>
+                            <td>{$dadosAnotacao[i].nome}</td>
+                            <td>
+                                {if $menuPesUsuario}
+                                    <!-- <a class="cor-tr-btn btn-acoes" href="adm_anotacao.php?acao=visualizar&id={$dados[0].id}&idAnotacao={$dadosAnotacao[i].id}"> -->
+                                    <a class="cor-tr-btn btn-acoes" href="adm_anotacao.php?acao=visualizar&id={$dadosAnotacao[i].id}">
+                                    visualizar</a> 
+                                {/if}
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+        <!-- Fim Contato -->
+        {/if}
+        <br>
+		<a href="adm_cliente.php?acao=pesquisar" class="btn-form" ><< voltar</a>
+
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

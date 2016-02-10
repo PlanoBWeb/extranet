@@ -1,0 +1,47 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+
+			<h1 class="titulo-pag">Visualizar Contato</h1>
+			
+			<label><strong>Nome:</strong></label>
+			<input type="text" disabled value="{$dados[0].nome}">	
+
+			<label><strong>Cargo:</strong></label>
+			<input type="text" disabled value="{$dados[0].cargo}">	
+
+			<label><strong>E-mail:</strong></label>
+			<div class="campo-link-input"><a href="mailto:{$dados[0].email}">{$dados[0].email}</a></div>
+
+			<label><strong>E-mail pessoal:</strong></label>
+			<div class="campo-link-input"><a href="mailto:{$dados[0].emailPessoal}">{$dados[0].emailPessoal}</a></div>
+
+			<label><strong>Skype:</strong></label>
+			<input type="text" disabled value="{$dados[0].skype}">	
+
+			<label><strong>Aniversário:</strong></label>
+			<input type="text" disabled value="{$dados[0].aniversario}">	
+
+			<label><strong>Telefone:</strong></label>
+			<div class="campo-link-input"><a href="tel:{$dados[0].dddtel}{$dados[0].telefoneLimpo}">( {$dados[0].dddtel} ) {$dados[0].telefone}</a></div>
+
+            <label><strong>Celular:</strong></label>
+            <div class="campo-link-input"><a href="tel:{$dados[0].dddcel}{$dados[0].celularLimpo}">( {$dados[0].dddcel} ) {$dados[0].celular}</a></div>
+    
+            <br>
+            
+            <div class="bt-acoes-interna">
+                {if $menuEdiUsuario}
+                    <a class="btn-form" href="adm_contato.php?acao=editar&idContato={$dados[0].id}">editar</a> 
+                {/if}
+                {if $menuExcUsuario}
+                    <a class="btn-form" href="#" onclick="exclui({$dados[0].id}, 'contato')">excluir</a>
+                {/if}
+
+                <a href="{if $existeId AND $existeIdCliente}adm_cliente.php?acao=visualizar&id={$existeIdCliente}{else}javascript:history.back(){/if}" class="btn-form" ><< voltar</a>
+            </div>
+		</form>
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

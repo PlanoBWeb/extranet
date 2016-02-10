@@ -1,0 +1,22 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+
+			<h1 class="titulo-pag">Usuarios</h1>
+			
+			<label><strong>*Pefil:</strong></label>
+			<input type="text" disabled value="{$dados[0].perfilCompleto}">	
+
+			<label><strong>*Nome do usuário:</strong></label>
+			<input type="text" disabled value="{$dados[0].email}">	
+
+			<label><strong>*E-mail do usuário:</strong></label>
+			<input type="text" disabled value="{$dados[0].nome}"> 
+			<br>
+			<br>
+			<a href="adm_usuario.php?acao=pesquisar" class="btn-form" ><< voltar</a>
+		</form>
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

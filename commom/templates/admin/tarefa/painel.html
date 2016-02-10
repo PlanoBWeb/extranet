@@ -1,0 +1,67 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        <br />
+        <h1 class="titulo-pag">Painel</h1><br />            
+
+        <article class="bloco-filtro">
+            <form method="post" class="form-bloco-filtro">
+                <input type="hidden" name="acao" value="painel" />
+                <label>FILTRO:</label>
+                <select name="tarefa_lembrete">
+                    <option value="">Tarefa/Lembrete</option>
+                    <option value="TAR" {if $form_tar_lem == "TAR"} selected {/if}>Tarefa</option>
+                    <option value="LEM" {if $form_tar_lem == "LEM"} selected {/if}>Lembrete</option>
+                </select>
+
+                <select name="usuario_filtro">
+                    <option value="">Usuários</option>
+                    {section name=u loop=$usuarios}
+                        <option value="{$usuarios[u].id}" {if $form_usuario == $usuarios[u].id} selected {/if}> {$usuarios[u].nome} </option>
+                    {/section}
+                </select>
+
+                <select name="cliente_filtro">
+                    <option value="">Clientes</option>
+                    {section name=c loop=$clientes}
+                        <option value="{$clientes[c].id}" {if $form_cliente == $clientes[c].id} selected {/if}> {$clientes[c].empresa} </option>
+                    {/section}
+                </select>
+                
+                <label> Data Inicio</label>
+                <input name="data_inicio" type="date" {if $form_data_inicio}value="{$form_data_inicio}"{/if}>
+
+                <label> Data Fim</label>
+                <input name="data_fim" type="date" {if $form_data_fim}value="{$form_data_fim}"{/if}>
+
+                <input type="submit" name="ok" value="Buscar">
+            </form>
+        </article>
+        {if $dados}
+            <div class="row">
+                <div>
+                    {assign var="nmTipo" value=$nmTipo|default:""}
+                    {section name=i loop=$dados}
+                        
+                                {if $nmTipo <> $dados[i].tarefa_lembrete }
+                                    </div>
+                                    <div class="bloco-encapsula-tam-lem cor-bloco-tar-lem" {if $form_tar_lem == "TAR" || $form_tar_lem == "LEM"} style="width: 98%;" {/if}>
+                                        <h1 class="titulo-pag">{$dados[i].tarefa_lembrete}</h1>
+                                {/if}
+                                <div class="col-sm-12 col-md-5 col-lg-5 bloco-tarefa bloco-tar-lem-default">
+                                    <p class="titulo-tar-lem txt-default-tar-lem"><strong>Titulo:</strong> {$dados[i].titulo}</p>
+                                    <p class="data-tar-lem txt-default-tar-lem"><strong>De:</strong> {$dados[i].data_inicio}  <strong>Até:</strong> {$dados[i].data_fim} </p>
+                                    <p class="desc-tar-lem txt-default-tar-lem"><strong>Descrição:</strong> {$dados[i].descricao}</p>
+                                    {if $dados[i].empresa}<p class="desc-tar-lem txt-default-tar-lem"><strong>Cliente:</strong> {$dados[i].empresa}</p>{/if}
+                                </div>
+                        {assign var="nmTipo" value=$dados[i].tarefa_lembrete}                     
+                    {/section}
+                </div>
+            </div>
+          
+        {else}
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

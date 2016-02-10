@@ -1,0 +1,72 @@
+﻿{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+		<input type="hidden" name="id" value="{$dados[0].id}" />
+	    <input type="hidden" name="idcliente" value="{$dados[0].idcliente}" />
+	    <h1 class="titulo-pag">Anotação</h1>
+ 
+	    <label>Clientes:</label>
+        <select name="cliente">
+        	{section name=i loop=$dadosCliente}
+            	<option value="{$dadosCliente[i].id}" {if $dadosCliente[i].empresa == $dadosCliente[0].empresa || $dadosCliente[i].id == $idClienteAnota}selected="selected"{/if}>{$dadosCliente[i].empresa}</option>
+            {/section}
+        </select>
+
+        <label>Tipo:</label>
+        <select name="tipo" id="seleciona_tipo">
+        	{section name=i loop=$dadosTipo}
+            	<option value="{$dadosTipo[i].id}" {if $dadosTipo[i].nome == "{$dadosTipo[0].nome}"}selected="selected"{/if}>{$dadosTipo[i].nome}</option>
+            {/section}
+            <option class="outros" value="outros">Outros</option>
+        </select>
+
+		<label class="nome_tipo">*Nome do tipo:</label>
+	    <input type="text" class="nome_tipo" name="nome_tipo" />        
+
+	    <label>*Titulo:</label>
+	    <input type="text" name="titulo" value="{$dados[0].titulo}" />
+
+	    <label>*Descrição:</label>
+	    <textarea name="descricao">{$dados[0].descricao}</textarea>
+
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label class="no-top">* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+{literal}	
+	<script>
+		function checa()
+		{
+			frm = document.frm_cadastro;
+			msg = "Preencha o campo ";
+			
+			if(trim(frm.titulo.value)=="")
+			{
+				alert(msg + "Titulo!");
+				frm.titulo.focus();
+				return false;
+			}
+
+			if(trim(frm.descricao.value)=="")
+			{
+				alert(msg + "Descrição!");
+				frm.descricao.focus();
+				return false;
+			}
+
+			frm.submit();
+		}
+
+		$('#seleciona_tipo').change(function(){
+			obj = $('#seleciona_tipo').val();
+			if(obj == "outros"){
+				$('.nome_tipo').css('display', 'block');
+			}else{
+				$('.nome_tipo').css('display', 'none');
+			}
+		});
+	</script>
+{/literal}
+
+{include file="admin/rodape.html"}

@@ -1,0 +1,82 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        {if $dados}
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_cliente.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+            <br>
+            <table class="table">
+                <h1 class="titulo-pag">Consultar Clientes</h1>
+                <br>
+                <!-- Busca -->
+                <form action="" method="get" name="search" class="none-mob">
+                    <input type="hidden" name="acao" value="busca">
+                    <input class="form-busca none-mob" type="search" name="busca" value="{$valorBusca}">
+                    <input class="envia-busca none-mob" type="submit" value="ok" name="gobusca">
+                </form>
+                <!-- Busca -->
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Status</th>
+                        <th>Empresa</th>
+                        <th class="hidden-xs-down">Site</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dados}
+                        <tr class="hover-tr">
+                            <td><a href="?acao=visualizar&id={$dados[i].id}">{$dados[i].status}</a> 
+                            <td><a href="?acao=visualizar&id={$dados[i].id}">{$dados[i].empresa}</a> </td>
+                            <td class="hidden-xs-down"><a href="http://{$dados[i].siteCompleto}" target="_blank">{$dados[i].site}</a></td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes">
+                                    {if $menuPesUsuario}
+                                    <a class="btn-acoes" href="?acao=visualizar&id={$dados[i].id}">visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="btn-acoes" href="?acao=editar&id={$dados[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="btn-acoes" href="#" onclick="exclui({$dados[i].id}, 'cliente')">excluir</a>
+                                    {/if}
+                                    {if $menuPesUsuario}
+                                        <a class="btn-acoes" href="adm_contato.php?acao=pesquisar&idCliente={$dados[i].id}">visualizar Contato</a> 
+                                    {/if}    
+                                    {if $menuPesUsuario}
+                                        <a class="btn-acoes" href="adm_anotacao.php?acao=pesquisar&id={$dados[i].id}">visualizar Anotação</a> 
+                                    {/if}
+                                    {if $menuPesUsuario}
+                                        <a class="btn-acoes" href="adm_historico.php?acao=pesquisar&id={$dados[i].id}">visualizar Histórico</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_cliente.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+        {else}
+            <br><br>
+            <h1 class="titulo-pag">Consultar Clientes</h1>
+            <!-- Busca -->
+            <form action="" class="none-mob" method="get" name="search">
+                <input type="hidden" name="acao" value="busca">
+                <input class="form-busca" type="search" name="busca" value="{$valorBusca}">
+                    <input class="envia-busca" type="submit" value="ok" name="gobusca">
+            </form>
+            <!-- Busca -->
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Administração</title>
+
+<link rel="stylesheet" href="base.css" type="text/css">
+</head>
+
+{if $mensagem}
+<script language="JavaScript">
+<!--
+        alert('{$mensagem}');
+        {if $redir}
+                window.location.href='{$redir}';
+        {/if}
+
+        {$adendo}
+
+        {if $fechar}
+
+                {if $funcao_opener}
+                        opener.{$funcao_opener};
+                {/if}
+                this.close();
+        {/if}
+
+        {if $voltar}
+                history.back();
+        {/if}
+-->
+</script>
+{/if}
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" bgcolor="#ffffff" {if $tipo == "html" && $formulario && $form.submit}OnLoad="auto_submit()"{/if}>
+
+{if $tipo == "html" && $formulario && $form.submit}
+{literal}
+<script>
+function auto_submit(){
+        $form = document.all.tags("form");
+        $form[0].submit();
+}
+</script>
+{/literal}
+{/if}
+{if $tipo == "html"}
+<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%" bgcolor="#ffffff">
+ <tr><td align="center">
+  <font size="2" color="red"><b>{$mensagem}</b></font>
+        {if $formulario}
+                <form name="{$form.nome}" action="{$form.acao}" method=post {$form.target}>
+                {section name=i loop=$arHidden}
+                        <input type=hidden value='{$arHidden[i].valor}' name='{$arHidden[i].nome}'>
+                {/section}
+                {section name=j loop=$arButton}
+                        <input type=submit value='{$arButton[j].valor}' name='{$arButton[j].nome}'>
+                {/section}
+                </form>
+        {/if}
+ </td></tr>
+</table>
+
+{elseif $tipo=="confirm"}
+<script>
+
+if(confirm('{$mensagem_confirm}'))
+
+        window.open('http://www.consultcad.com.br','','left=0, top=0, width=780, height=430, menubar=1');
+        {$adendo}
+
+</script>
+{else}
+<script>
+
+{if $funcao}{$funcao}{/if}
+
+{if $funcao_opener_fora}opener.{$funcao_opener_fora};{/if}
+{if $fecha}window.close();{/if}
+
+{if $volta}history.back();{/if}
+
+{if $redir}window.location='{$redir}';{/if}
+</script>
+{/if}
+</body></html>
+

@@ -1,0 +1,56 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        {if $dados}
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_historico.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+            <br>
+            <table class="table">
+                <h1 class="titulo-pag">Visualizar Histórico</h1>
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Tipo</th>
+                        <th class="hidden-xs-down">Data</th>
+                        <th>Usuario</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dados}
+                        <tr class="hover-tr">
+                            <td>{$dados[i].tipo}</td>
+                            <td class="hidden-xs-down">{$dados[i].data_formatada}</td>
+                            <td>{$dados[i].nomeUsuario}</td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes mg-lf-80">
+                                    {if $menuPesUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="?acao=visualizar&tpHist={$dados[i].tipoSigla}&idCliente={$dados[i].idcliente}">visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="?acao=editar&id={$dados[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="#" onclick="exclui({$dados[i].id}, 'historico')">excluir</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+
+            <div class="bloco-paginacao">
+                {section start=1 name=j loop=$Numpaginas}
+                    <a class="{if $Numpaginas[j] == $smarty.get.p} link-pag-ativo {/if}" href="adm_historico.php?acao=pesquisar&p={$Numpaginas[j]}">{$Numpaginas[j]}</a>
+                {/section}
+            </div> 
+        {else}
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

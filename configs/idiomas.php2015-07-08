@@ -1,0 +1,380 @@
+
+<?php
+
+session_start();
+if( $_SESSION['idioma'] == "E")
+{
+	//ESPANHOL
+
+	define("MN_DDD","Prefijo");
+	define("MN_CEP","Código Postal");
+	define("MN_SITE","Página web");
+	define("MN_SELECIONE","Seleccione");
+
+	//MENU
+	define("MN_HOME","home");
+	define("MN_INSTITUCIONAL","institucional");
+	define("MN_INSTITUCIONAL_CHAMEX","chamex");
+	define("MN_PRODUTOS","Productos");
+	define("MN_ONDE_ENCONTRAR","Dónde encontrar");
+	define("MN_SUSTENTABILIDADE","Sustentabilidad");
+	define("MN_VIDEOS","Vídeos");
+	define("MN_DICAS","Consejos");
+	define("MN_FALE_CONOSCO","Contáctenos");
+	define("MN_CURIOSIDADES","Curiosidades");
+	//MENU
+
+	//TITULOS
+	define("MN_TT_PRODUTOS","productos chamex");
+	define("MN_TT_ONDE","Dónde encontrar");
+	define("MN_TT_DICAS_VENDEDOR","Consejos para el vendedor");
+	define("MN_TT_REGISTRO","REGISTRO DE " . '<br />' . " PUNTO DE VENTA");
+	define("MN_TT_CADASTRE_PONTO_LOJISTA","Registro de punto de venta");
+	define("MN_TT_DISTRIBUIDOR","Área del distribuidor");
+	define("MN_TT_DOWNLOADS","Materiales para descarga");
+	define("MN_TT_MEUS_DADOS","Mis datos");
+	define("MN_TT_ESQUECI_SENHA","Me olvidé la clave");
+	//TITULOS
+
+	//RODAPE
+	define("MN_DISTRIBUIDOR","área del " . '<br />'. " Distribuidor");
+	define("MN_PONTO_VENDAS","registro de " . '<br />'. " punto de venta");
+	define("MN_PONTO_VENDA","puntos de ventas");
+	define("MN_DIREITOS","© 2015 International Paper. Todos los derechos reservados.");
+	define("MN_AREA_VENDEDOR","área del " . '<br />'. " vendedor");
+	//RODAPE
+
+
+	//HOME
+	define("MN_ROLE_MOUSE","Desplácese por la página o use el menú para navegar");
+	//HOME
+
+	//INSTITUCIONAL CHAMEX
+	define("MN_CLIQUE_VIDEO","haga clic para ver el vídeo");
+	define("MN_DICAS","Consejos");
+	define("MN_VEJA_TAMBEM","Vea también:");
+	define("MN_DICAS","Consejos");
+	//INSTITUCIONAL CHAMEX
+
+	//INTERNATIONAL PAPER
+	define("MN_SAIBA_MAIS","CONOZCA MÁS SOBRE INTERNATIONAL PAPER");
+	//INTERNATIONAL PAPER
+
+	//ABRE FACIL
+	define("MN_ABRE_FACIL","Todos los empaques poseen un nuevo sistema de apertura, exclusivo de International Paper, que permite la apertura del empaque con facilidad.");
+	//ABRE FACIL
+
+	//ONDE ENCONTRAR
+	define("MN_CIDADE","ciudad");
+	define("MN_TXT_LOJISTA","vendedor");
+	define("MN_TXT_CADASTRE_PONTO","haga clic aquí y registre " . '<br />'. " su punto de venta " . '<br />'. " en nuestra página web.");
+	//ONDE ENCONTRAR
+	
+	//DISTRIBUIDORES
+	define("MN_TLT_TXT_ATENCAO","¡atención!  ");
+	define("MN_TXT_ATENCAO","los distribuidores atienden " . '<br />'. " exclusivamente a los vendedores.");
+	//DISTRIBUIDORES
+
+	//DESCRIÇÃO DICA
+	define("MN_VOLTAR_MENU","volver al menú ");
+	define("MN_SEGUINTE","siguiente ");
+	define("MN_ANTERIOR","anterior");
+	//DESCRIÇÃO DICA
+
+	//FALE CONOSCO
+	define("MN_TXT_FALE","¿Quiere contactar a CHAMEX? Rellene el formulario para enviar su mensaje.");
+	define("MN_CONTATO_NOME","nombre:");
+	define("MN_CONTATO_MSG","mensaje:");
+	define("MN_CONTATO_RECEBER","deseo recibir informaciones de chamex");
+	define("MN_TXT_DUVIDAS","¿Dudas, reclamaciones o sugerencias? ¡Contáctenos! Con su ayuda podemos mejorar aún más nuestros productos y ofrecer un servicio de calidad para nuestro público. ");
+	//FALE CONOSCO
+
+	// REGISTRO DE PONTOS DE VENDA
+	define("MN_TXT_CADASTRE_PONTO_VENDA","Ponga los datos de su establecimiento y, después de verificarlos, los pondremos en nuestra página web.");
+	define("MN_NOME_ESTABELICIMENTO","Nombre del  " . '<br />'. " establecimiento:");
+	define("MN_ENDERECO","Dirección:");
+	define("MN_TELEFONE","Teléfono:");
+	define("MN_DICAS_LOJISTA","Consejos para el vendedor");
+	// REGISTRO DE PONTOS DE VENDA
+
+	//AREA DO DISTRIBUIDOR
+	define("MN_INSIRA_EMAIL","Ponga su email y su clave");
+	define("MN_LOGIN_ACESSO","Login de acceso (email):");
+	define("MN_SENHA","clave:");
+	define("MN_ESQUECEU_SENHA","¿Se olvidó la clave?");
+	define("MN_ESQUECEU_SENHA_CLIQUE","Haga clic aquí.");
+	define("MN_DUVIDAS","Dudas");
+	define("MN_NAO_ACESSA","¿No consigue acceder al área exclusiva?");
+	define("MN_ENVIE_EMAIL","Envíe un email a ");
+	//AREA DO DISTRIBUIDOR
+
+	// MEUS DADOS
+	define("MN_MANTENHA_DADOS","Mantenga sus datos siempre actualizados.");
+	define("MN_DADOS_ACESSO","Datos de acceso");
+	define("MN_REPETIR_SENHA","repetir clave:");
+	define("MN_DADOS_CADASTRAIS","DATOS DE REGISTRO");
+	define("MN_NOME_CONTATO","nombre del " . '<br />'. "  contacto:");
+	define("MN_CELULAR","móvil:");
+	// MEUS DADOS
+
+	//ESQUECI A SENHA
+	define("MN_RECUPERAR_SENHA","Recuperación de clave");
+	define("MN_EMAIL_NOVA_SENHA","Ponga su email y le enviaremos una nueva clave.");
+	//ESQUECI A SENHA
+
+	define("MN_TEL_SAC","Atención Telefónica: +55 19 3861-8921*, De lunes a viernes, de 9:00 a 17:00 horas. Horario Brasil GMT – 3:00");
+	define("MN_VOLTAR", "volver");
+	define("MN_BEM_VINDO", "bienvenido");
+	
+}	
+elseif( $_SESSION['idioma'] == "I"){
+	//INGLÊS
+
+	define("MN_DDD","DDD");
+	define("MN_CEP","CEP");
+	define("MN_SITE","SITE");
+	define("MN_SELECIONE","Selecione");
+
+	//MENU
+	define("MN_HOME","home");
+	define("MN_INSTITUCIONAL","institucional");
+	define("MN_INSTITUCIONAL_CHAMEX","chamex");
+	define("MN_PRODUTOS","produtos");
+	define("MN_ONDE_ENCONTRAR","onde encontrar");
+	define("MN_SUSTENTABILIDADE","sustentabilidade");
+	define("MN_VIDEOS","videos");
+	define("MN_DICAS","dicas");
+	define("MN_FALE_CONOSCO","fale conosco");
+	define("MN_CURIOSIDADES","curiosities");
+	//MENU
+
+	//TITULOS
+	define("MN_TT_PRODUTOS","produtos chamex");
+	define("MN_TT_ONDE","onde encontrar");
+	define("MN_TT_CADASTRE_PONTO_LOJISTA","cadastre seu ponto de venda");
+	define("MN_TT_CADASTRE_PONTO_LOJISTA","Registro de punto de venta");
+	define("MN_TT_DICAS_VENDEDOR","dicas para o lojista");
+	define("MN_TT_REGISTRO","cadastre seu " . '<br />' . " ponto de venda");
+	define("MN_TT_DISTRIBUIDOR","área do distribuidor");
+	define("MN_TT_DOWNLOADS","materiais para download");
+	define("MN_TT_MEUS_DADOS","meus dados");
+	define("MN_TT_ESQUECI_SENHA","Esqueci minha senha");
+	//TITULOS
+
+	//RODAPE
+	define("MN_DISTRIBUIDOR","área do" . '<br />'. "distribuidor");
+	define("MN_PONTO_VENDAS","cadastro de " . '<br />'. " ponto de venda");
+	define("MN_PONTO_VENDA","pontos de venda");
+	define("MN_DIREITOS","© 2015 International Paper. Todos os direitos reservados.");
+	define("MN_AREA_VENDEDOR","área do" . '<br />'. " lojista");
+	//RODAPE
+
+	//HOME
+	define("MN_ROLE_MOUSE","role a página ou use o menu para navegar");
+	//HOME
+
+
+	//INSTITUCIONAL CHAMEX
+	define("MN_CLIQUE_VIDEO","clique para assistir ao video");
+	define("MN_VEJA_TAMBEM","leia também:");
+	//INSTITUCIONAL CHAMEX
+
+	//INTERNATIONAL PAPER
+	define("MN_SAIBA_MAIS","saiba mais sobre International paper");
+	//INTERNATIONAL PAPER
+
+	//ABRE FACIL
+	define("MN_ABRE_FACIL","Todas as embalagens possuem um novo sistema de abertura, exclusivo da International Paper, que permite a abertura da embalagem com facilidade.");
+	//ABRE FACIL
+
+	//ONDE ENCONTRAR
+	define("MN_CIDADE","cidade");
+	define("MN_TXT_LOJISTA","lojista");
+	define("MN_TXT_CADASTRE_PONTO","clique aqui e cadastre " . '<br />'. " seu ponto de venda " . '<br />'. " em nosso site.");
+	//ONDE ENCONTRAR
+
+	//DISTRIBUIDORES
+	define("MN_TLT_TXT_ATENCAO","atenção");
+	define("MN_TXT_ATENCAO","distribuidores atendem " . '<br />'. " exclusivamente lojistas.");
+	//DISTRIBUIDORES
+
+	//DESCRIÇÃO DICA
+	define("MN_VOLTAR_MENU","voltar ao menu");
+	define("MN_SEGUINTE","próximo");
+	define("MN_ANTERIOR","anterior");
+	//DESCRIÇÃO DICA
+
+	//FALE CONOSCO
+	define("MN_TXT_FALE","quer entrar em contato com a chamex? preencha o formulário abaixo para enviar sua mensagem");
+	define("MN_CONTATO_NOME","nome:");
+	define("MN_CONTATO_MSG","mensagem:");
+	define("MN_CONTATO_RECEBER","desejo receber comunicaçao da chamex:");
+	define("MN_TXT_DUVIDAS","dúvidas, reclamações ou sugestões? fale com a gente com a sua ajuda podemos tornar nossos produtos ainda melhores e oferecer um serviço de qualidade para o nosso público.");
+	//FALE CONOSCO
+
+	// REGISTRO DE PONTOS DE VENDA
+	define("MN_TXT_CADASTRE_PONTO_VENDA","insira os dados do seu estabelecimento e após verificação, adicionaremos ao nosso site.");
+	define("MN_NOME_ESTABELICIMENTO","nome do  " . '<br />'. "estabelecimento");
+	define("MN_ENDERECO","endereço:");
+	define("MN_TELEFONE","telefone:");
+	define("MN_DICAS_LOJISTA","dicas para o lojista");
+	// REGISTRO DE PONTOS DE VENDA
+
+	//AREA DO DISTRIBUIDOR
+	define("MN_INSIRA_EMAIL","Insira seu e-mail e sua senha");
+	define("MN_LOGIN_ACESSO","Login de acesso (email):");
+	define("MN_SENHA","senha");
+	define("MN_ESQUECEU_SENHA","Esqueceu sua senha?");
+	define("MN_ESQUECEU_SENHA_CLIQUE","clique aqui");
+	define("MN_DUVIDAS","dúvidas");
+	define("MN_NAO_ACESSA","não está conseguindo acessar a área exclusiva?");
+	define("MN_ENVIE_EMAIL","envie e-mail para ");
+	//AREA DO DISTRIBUIDOR
+
+	// MEUS DADOS
+	define("MN_MANTENHA_DADOS","Mantenha seus dados sempre atualizados.");
+	define("MN_DADOS_ACESSO","dados de acesso");
+	define("MN_REPETIR_SENHA","repetir senha:");
+	define("MN_DADOS_CADASTRAIS","dados cadastrais");
+	define("MN_NOME_CONTATO","nome do " . '<br />'. " contato:");
+	define("MN_CELULAR","celular:");
+	// MEUS DADOS
+
+	//ESQUECI A SENHA
+	define("MN_RECUPERAR_SENHA","recuperação de senha");
+	define("MN_EMAIL_NOVA_SENHA","Insira seu e-mail e enviaremos uma nova senha.");
+	//ESQUECI A SENHA
+
+	define("MN_TEL_SAC","SAC Chamex - 0800 70 300 70");
+	define("MN_VOLTAR", "voltar");
+	define("MN_BEM_VINDO", "bienvenido");
+}
+
+else
+{
+	//PORTUGUES
+
+	define("MN_DDD","DDD");
+	define("MN_CEP","CEP");
+	define("MN_SITE","SITE");
+	define("MN_SELECIONE","Selecione");
+
+	//MENU
+	define("MN_HOME","home");
+	define("MN_INSTITUCIONAL","institucional");
+	define("MN_INSTITUCIONAL_CHAMEX","chamex");
+	define("MN_PRODUTOS","produtos");
+	define("MN_ONDE_ENCONTRAR","onde encontrar");
+	define("MN_SUSTENTABILIDADE","sustentabilidade");
+	define("MN_VIDEOS","videos");
+	define("MN_DICAS","dicas");
+	define("MN_FALE_CONOSCO","fale conosco");
+	define("MN_CURIOSIDADES","Curiosidades");
+	//MENU
+
+	//TITULOS
+	define("MN_TT_PRODUTOS","produtos chamex");
+	define("MN_TT_ONDE","onde encontrar");
+	define("MN_TT_CADASTRE_PONTO_LOJISTA","cadastre seu ponto de venda");
+	define("MN_TT_CADASTRE_PONTO_LOJISTA","Registro de punto de venta");
+	define("MN_TT_DICAS_VENDEDOR","dicas para o lojista");
+	define("MN_TT_REGISTRO","cadastre seu " . '<br />' . " ponto de venda");
+	define("MN_TT_DISTRIBUIDOR","área do distribuidor");
+	define("MN_TT_DOWNLOADS","materiais para download");
+	define("MN_TT_MEUS_DADOS","meus dados");
+	define("MN_TT_ESQUECI_SENHA","Esqueci minha senha");
+	//TITULOS
+
+	//RODAPE
+	define("MN_DISTRIBUIDOR","área do" . '<br />'. "distribuidor");
+	define("MN_PONTO_VENDAS","cadastro de " . '<br />'. " ponto de venda");
+	define("MN_PONTO_VENDA","pontos de venda");
+	define("MN_DIREITOS","© 2015 International Paper. Todos os direitos reservados.");
+	define("MN_AREA_VENDEDOR","área do" . '<br />'. " lojista");
+	//RODAPE
+
+	//HOME
+	define("MN_ROLE_MOUSE","role a página ou use o menu para navegar");
+	//HOME
+
+
+	//INSTITUCIONAL CHAMEX
+	define("MN_CLIQUE_VIDEO","clique para assistir ao video");
+	define("MN_VEJA_TAMBEM","leia também:");
+	//INSTITUCIONAL CHAMEX
+
+	//INTERNATIONAL PAPER
+	define("MN_SAIBA_MAIS","saiba mais sobre International paper");
+	//INTERNATIONAL PAPER
+
+	//ABRE FACIL
+	define("MN_ABRE_FACIL","Todas as embalagens possuem um novo sistema de abertura, exclusivo da International Paper, que permite a abertura da embalagem com facilidade.");
+	//ABRE FACIL
+
+	//ONDE ENCONTRAR
+	define("MN_CIDADE","cidade");
+	define("MN_TXT_LOJISTA","lojista");
+	define("MN_TXT_CADASTRE_PONTO","clique aqui e cadastre " . '<br />'. " seu ponto de venda " . '<br />'. " em nosso site.");
+	//ONDE ENCONTRAR
+
+	//DISTRIBUIDORES
+	define("MN_TLT_TXT_ATENCAO","atenção");
+	define("MN_TXT_ATENCAO","distribuidores atendem " . '<br />'. " exclusivamente lojistas.");
+	//DISTRIBUIDORES
+
+	//DESCRIÇÃO DICA
+	define("MN_VOLTAR_MENU","voltar ao menu");
+	define("MN_SEGUINTE","próximo");
+	define("MN_ANTERIOR","anterior");
+	//DESCRIÇÃO DICA
+
+	//FALE CONOSCO
+	define("MN_TXT_FALE","quer entrar em contato com a chamex? preencha o formulário abaixo para enviar sua mensagem");
+	define("MN_CONTATO_NOME","nome:");
+	define("MN_CONTATO_MSG","mensagem:");
+	define("MN_CONTATO_RECEBER","desejo receber comunicaçao da chamex:");
+	define("MN_TXT_DUVIDAS","dúvidas, reclamações ou sugestões? fale com a gente com a sua ajuda podemos tornar nossos produtos ainda melhores e oferecer um serviço de qualidade para o nosso público.");
+	//FALE CONOSCO
+
+	// REGISTRO DE PONTOS DE VENDA
+	define("MN_TXT_CADASTRE_PONTO_VENDA","insira os dados do seu estabelecimento e após verificação, adicionaremos ao nosso site.");
+	define("MN_NOME_ESTABELICIMENTO","nome do  " . '<br />'. "estabelecimento");
+	define("MN_ENDERECO","endereço:");
+	define("MN_TELEFONE","telefone:");
+	define("MN_DICAS_LOJISTA","dicas para o lojista");
+	// REGISTRO DE PONTOS DE VENDA
+
+	//AREA DO DISTRIBUIDOR
+	define("MN_INSIRA_EMAIL","Insira seu e-mail e sua senha");
+	define("MN_LOGIN_ACESSO","Login de acesso (email):");
+	define("MN_SENHA","senha");
+	define("MN_ESQUECEU_SENHA","Esqueceu sua senha?");
+	define("MN_ESQUECEU_SENHA_CLIQUE","clique aqui");
+	define("MN_DUVIDAS","dúvidas");
+	define("MN_NAO_ACESSA","não está conseguindo acessar a área exclusiva?");
+	define("MN_ENVIE_EMAIL","envie e-mail para ");
+	//AREA DO DISTRIBUIDOR
+
+	// MEUS DADOS
+	define("MN_MANTENHA_DADOS","Mantenha seus dados sempre atualizados.");
+	define("MN_DADOS_ACESSO","dados de acesso");
+	define("MN_REPETIR_SENHA","repetir senha:");
+	define("MN_DADOS_CADASTRAIS","dados cadastrais");
+	define("MN_NOME_CONTATO","nome do " . '<br />'. " contato:");
+	define("MN_CELULAR","celular:");
+	// MEUS DADOS
+
+	//ESQUECI A SENHA
+	define("MN_RECUPERAR_SENHA","recuperação de senha");
+	define("MN_EMAIL_NOVA_SENHA","Insira seu e-mail e enviaremos uma nova senha.");
+	//ESQUECI A SENHA
+
+	define("MN_TEL_SAC","SAC Chamex - 0800 70 300 70");
+	define("MN_VOLTAR", "voltar");
+	define("MN_BEM_VINDO", "bienvenido");
+}
+
+
+?>
+
+

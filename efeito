@@ -1,0 +1,67 @@
+{literal}
+    <script type="text/javascript">
+        
+            $('.ativa-select-acoes').click(function (e){
+                e.preventDefault();
+                var bloco_acoes = $(this).next( ".select-acoes" );
+                $(bloco_acoes).show(
+//                     $(bloco_acoes).animate({
+//  opacity: 1,
+// display: "block",
+// right: "+=40",
+// width: "toggle"
+//                     }, 1000 )
+                );
+                // if(( bloco_acoes ).is(":visible")){
+                //     $( bloco_acoes ).animate({
+                //         opacity: 1,
+                //         display: "block",
+                //         right: "-=40",
+                //         width: "toggle"
+                //     }, 1000 );
+                // }else{
+                //     $( bloco_acoes ).animate({
+                //         opacity: 1,
+                //         display: "block",
+                //         right: "+=40",
+                //         width: "toggle"
+                //     }, 1000 );
+                // }
+                
+            });
+
+        $(document).mouseup(function (e){
+            var bloco_acoes = $( ".select-acoes" );
+            if( !bloco_acoes.is(e.target) && bloco_acoes.has(e.target).length === 0){
+                $( bloco_acoes ).hide(
+
+
+                );
+                //  $( bloco_acoes ).animate({
+                //     opacity: 1,
+                //     display: "block",
+                //     right: "-=40",
+                //     width: "toggle"
+                // }, 1000 );
+            }
+        });
+        
+
+    </script>
+{/literal}
+
+
+
+   $('.ativa-select-acoes').click(function (e){
+            e.preventDefault();
+            var bloco_acoes = $(this).next( ".select-acoes" );
+            $(bloco_acoes).show();
+
+        });
+        
+        $(document).mouseup(function (e){
+            var bloco_acoes = $( ".select-acoes" );
+            if( !bloco_acoes.is(e.target) && bloco_acoes.has(e.target).length === 0){
+                $( bloco_acoes ).hide();
+            }
+        });

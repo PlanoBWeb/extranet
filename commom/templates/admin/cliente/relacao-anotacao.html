@@ -1,0 +1,39 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        {if $dados} 
+            <!-- Contato -->
+            <table class="table">
+                <br />
+                <h1 class="titulo-pag">Consultar Anotações</h1>
+                <a class="cor-tr-btn btn-acoes" href="adm_anotacao.php?id={$smarty.get.id}">Cadastrar Anotação</a> 
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Titulo</th>
+                        <th class="hidden-xs-down">Tipo</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dados}
+                        <tr class="hover-tr">
+                            <td>{$dados[i].titulo}</td>
+                            <td class="hidden-xs-down">{$dados[i].nome}</td>
+                            <td>
+                                {if $menuPesUsuario}
+                                    <a class="cor-tr-btn btn-acoes" href="adm_anotacao.php?acao=visualizar&idAnota={$dados[i].id}">visualizar</a> 
+                                {/if}
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+        <!-- Fim Contato -->
+        {else}
+            <br><br>
+            <a class="cor-tr-btn btn-acoes" href="adm_anotacao.php?id={$smarty.get.id}">Cadastrar Anotação</a> 
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

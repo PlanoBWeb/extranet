@@ -1,0 +1,49 @@
+{include file="admin/topo.html"}
+    <!-- Conteúdo -->
+    <div class="container">
+        {if $dadosContato} 
+            <!-- Contato -->
+            <table class="table">
+                <br />
+                <h1 class="titulo-pag">Consultar Contatos</h1>
+                <thead>
+                    <tr class="cor-tr-btn">
+                        <th>Nome</th>
+                        <th>Cliente</th>
+                        <th class="hidden-xs-down">E-mail</th>
+                        <th class="hidden-xs-down">Celular</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {section name=i loop=$dadosContato}
+                        <tr class="hover-tr">
+                            <td><a href="adm_contato.php?acao=visualizar&id={$dadosContato[i].id}">{$dadosContato[i].nome}</a></td>
+                            <td>{$dadosContato[i].empresa}</td>
+                            <td class="hidden-xs-down"><a href="mailto:{$dadosContato[i].email}" target="_blank">{$dadosContato[i].email}</a></td>
+                            <td class="hidden-xs-down"><a href="tel:{$dadosContato[i].dddcel}{$dadosContato[i].celularLimpo}">({$dadosContato[i].dddcel}) {$dadosContato[i].celular}</a></td>
+                            <td>
+                                <a class="ativa-select-acoes cor-tr-btn btn-acoes" href="#">Ações</a> 
+                                <div class="select-acoes mg-lf-80">
+                                    {if $menuPesUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato.php?acao=visualizar&id={$dadosContato[i].id}">visualizar</a> 
+                                    {/if}
+                                    {if $menuEdiUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="adm_contato.php?acao=editar&idContato={$dadosContato[i].id}">editar</a> 
+                                    {/if}
+                                    {if $menuExcUsuario}
+                                        <a class="cor-tr-btn btn-acoes" href="#" onclick="excluiContato({$dadosContato[i].id}, 'contato', {$valorPagina})">excluir</a>
+                                    {/if}
+                                </div>
+                            </td>
+                        </tr>
+                    {/section}
+                </tbody>
+            </table>
+        <!-- Fim Contato -->
+        {else}
+            <p class="sem-resultado">Não existe resultados</p>
+        {/if}       
+    </div>
+    <!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

@@ -1,0 +1,27 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<br>
+        <h1 class="titulo-pag">Visualizar {$dados[0].tipo}</h1>
+		<div class="bloco-historico">
+			<p><strong>Cliente: </strong> {$dados[0].empresa}</p>
+
+			{section name=i loop=$dados}
+				<div class="bloco-interno-historico">
+					<p><strong>{$dados[i].data_formatada} - ({$dados[i].nomeUsuario}) </strong> {$dados[i].descricao}</p>
+					<!-- <div class="bt-acoes-interna">
+		                {if $menuEdiUsuario}
+		                    <a class="btn-form" href="adm_historico.php?acao=editar&idContato={$dados[0].id}">editar</a> 
+		                {/if}
+		                {if $menuExcUsuario}
+		                    <a class="btn-form" href="#" onclick="exclui({$dados[0].id}, 'contato')">excluir</a>
+		                {/if}
+		            </div> -->
+				</div>
+			{/section}
+		</div>    
+    	<br>
+		<a href="javascript:history.back()" class="btn-form" ><< voltar</a>
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

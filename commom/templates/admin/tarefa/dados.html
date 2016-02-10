@@ -1,0 +1,82 @@
+﻿{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+	    <input type="hidden" name="id" value="{$dados[0].id}" />
+
+	    <h1 class="titulo-pag">Tarefas</h1>
+
+	    <label>*Tarefa/Lembrete:</label>
+	    <select name="tarefa_lembrete">
+            <option value="TAR" {if $dados[0].tarefa_lembrete_sigla == "TAR"}selected="selected"{/if}>Tarefa</option>
+            <option value="LEM" {if $dados[0].tarefa_lembrete_sigla == "LEM"}selected="selected"{/if}>Lembrete</option>
+        </select>
+
+        <label>Cliente:</label>
+        <select name="cliente">
+        	<option value="">Clientes</option>
+        	{section name=i loop=$dadosCliente}      
+            	<option value="{$dadosCliente[i].id}" {if $dadosCliente[i].id == $dados[0].idcliente }selected="selected"{/if}>{$dadosCliente[i].empresa}</option>
+            {/section}
+        </select>
+	    
+	    <label>*Titulo:</label>
+	    <input type="text" name="titulo" value="{$dados[0].titulo}" />
+
+	    <label>Status:</label>
+        <select name="status">
+        	<option value="A" {if $dados[0].status == "A" }selected="selected"{/if}>Em Aberta</option>
+        	<option value="P" {if $dados[0].status == "P" }selected="selected"{/if}>Parada</option>
+        	<option value="F" {if $dados[0].status == "F" }selected="selected"{/if}>Finalizada</option>
+        </select>
+
+	    <label>*Descrição:</label>
+	    <textarea name="descricao">{$dados[0].descricao}</textarea>
+
+	    <label>*Data Inicio:</label>
+	    <input type="date" name="data_inicio" value="{$dados[0].data_inicio}" />
+
+	    <label>Data Fim:</label>
+	    <input type="date" name="data_fim" value="{$dados[0].data_fim}" />
+
+	    <label>*Lembrar-me por e-mail:</label>
+	    <input type="checkbox" name="lembrar" value="1" {if $dados[0].lembrar == "1"}checked{/if} />
+
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label class="no-top">* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+{literal}	
+	<script>
+		function checa()
+		{
+			frm = document.frm_cadastro;
+			msg = "Preencha o campo ";
+			
+			if(trim(frm.titulo.value)=="")
+			{
+				alert(msg + "Titulo!");
+				frm.titulo.focus();
+				return false;
+			}
+			
+			if(trim(frm.descricao.value) == "")
+			{
+				alert(msg + "Descrição!");
+				frm.descricao.focus();
+				return false;
+			}	
+
+			if(trim(frm.data_inicio.value) == "")
+			{
+				alert(msg + "Data Inicio!");
+				frm.data_inicio.focus();
+				return false;
+			}	
+
+			frm.submit();
+		}
+	</script>
+{/literal}
+
+{include file="admin/rodape.html"}

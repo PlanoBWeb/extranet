@@ -1,0 +1,60 @@
+{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+	    <input type="hidden" name="id" value="{$dados[0].id}" />
+
+	    <h1 class="titulo-pag">Alterar Senha</h1>
+	    
+	    <label>*Senha Atual:</label>
+	    <input type="password" name="senhaatual" size="30"/>
+
+	    <label>*Senha:</label>
+	    <input type="password" name="senha" size="30" value="" />
+	    
+	    <label>*Repetir Senha:</label>
+	    <input type="password" name="senha2" size="30" value="" />
+	    
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label>* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+{literal}
+<script>
+	function checa()
+	{
+		frm = document.frm_cadastro;
+		msg = "Preencha o campo ";
+		
+		if(trim(frm.senhaatual.value) == "")
+		{
+			alert(msg + "Senha Atual!");
+			frm.senhaatual.focus();
+			return false;
+		}
+
+		if(trim(frm.senha.value) == "")
+		{
+			alert(msg + "Senha!");
+			frm.senha.focus();
+			return false;
+		}
+		
+		if(trim(frm.senha2.value) == "")
+		{
+			alert(msg + "Repetir Senha!");
+			frm.senha2.focus();
+			return false;
+		}
+		
+		if(trim(frm.senha.value) != trim(frm.senha2.value))
+		{
+			alert("As senhas estão diferentes!");
+			return false;
+		}
+		
+		frm.submit();
+	}
+</script>
+{/literal}
+{include file="admin/rodape.html"}

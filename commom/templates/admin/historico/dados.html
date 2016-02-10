@@ -1,0 +1,86 @@
+﻿{include file="admin/topo.html"}
+<!-- Conteúdo -->
+    <form name="frm_cadastro" method="POST">
+	    <input type="hidden" name="acao" value="gravar" />
+	    <input type="hidden" name="id" value="{$dados[0].id}" />
+
+	    <h1 class="titulo-pag">Histórico</h1>
+
+        <label>Cliente:</label>
+        <select name="cliente">
+        	<option value="Clientes">Clientes</option>
+        	{section name=i loop=$dadosCliente}      
+            	<option value="{$dadosCliente[i].id}" {if $dadosCliente[i].id == $dados[0].idcliente }selected="selected"{/if}>{$dadosCliente[i].empresa}</option>
+            {/section}
+        </select>
+
+        <label>Tipo histórico:</label>
+        <select name="tipoHist">
+        	<option value="">Selecione o tipo</option>
+            <option value="HA" {if "HA" == $dados[0].tipoSigla }selected="selected"{/if}>Histórico Adwords</option>
+            <option value="HS" {if "HS" == $dados[0].tipoSigla }selected="selected"{/if}>Histórico SEO</option>
+            <option value="HG" {if "HG" == $dados[0].tipoSigla }selected="selected"{/if}>Histórico geral</option>
+            <option value="HP" {if "HP" == $dados[0].tipoSigla }selected="selected"{/if}>Histórico produção</option>
+        </select>
+	    
+	    <label>*Titulo:</label>
+	    <input type="text" name="titulo" value="{$dados[0].titulo}" />
+
+	    <label>*Descrição:</label>
+	    <textarea name="descricao">{$dados[0].descricao}</textarea>
+
+	    <label>*Data:</label>
+	    <input type="date" name="data" value="{if $dados[0].data}{$dados[0].data}{else}{$dataAtual}{/if}" />
+
+		<input name="submit" type="submit" class="btn-form top-btn" value="{$botao}" onclick="return checa();" /><br>
+	    <label class="no-top">* Campos obrigatórios.</label>
+    </form>
+<!-- FIM Conteúdo -->
+{literal}	
+	<script>
+		function checa()
+		{
+			frm = document.frm_cadastro;
+			msg = "Preencha o campo ";
+			
+			if(trim(frm.cliente.value)=="Clientes")
+			{
+				alert(msg + "Cliente!");
+				frm.cliente.focus();
+				return false;
+			}
+
+			if(trim(frm.tipoHist.value)=="")
+			{
+				alert(msg + "Tipo!");
+				frm.tipoHist.focus();
+				return false;
+			}
+
+			if(trim(frm.titulo.value)=="")
+			{
+				alert(msg + "Titulo!");
+				frm.titulo.focus();
+				return false;
+			}
+			
+			if(trim(frm.descricao.value) == "")
+			{
+				alert(msg + "Descrição!");
+				frm.descricao.focus();
+				return false;
+			}	
+
+			if(trim(frm.data.value) == "")
+			{
+				alert(msg + "Data!");
+				frm.data.focus();
+				return false;
+			}	
+
+			frm.submit();
+		}
+	</script>
+{/literal}
+
+{include file="admin/rodape.html"}

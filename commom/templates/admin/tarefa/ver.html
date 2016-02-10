@@ -1,0 +1,31 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+            <h1 class="titulo-pag">Tarefas</h1>
+            
+			<label><strong>Tarefa/Lembrete:</strong></label>
+			<input type="text" disabled value="{$dados[0].tarefa_lembrete}">	
+
+			<label><strong>Titulo:</strong></label>
+			<input type="text" disabled value="{$dados[0].titulo}"> 
+
+            <label><strong>Data Início:</strong></label>
+            <input type="text" disabled value="{$dados[0].data_inicio_formatada}"> 
+
+            <label><strong>Data Fim:</strong></label>
+            <input type="text" disabled value="{$dados[0].data_fim_formatada}"> 
+
+			<label><strong>Descrição:</strong></label>
+            <div class="campo-link-input">{$dados[0].descricao}</div>
+
+            <label><strong>Lembrar:</strong></label>
+            <input type="text" disabled value="{if $dados[0].lembrar == 1}Sim{else} Não {/if}"> 
+		</form>
+    
+        <br>
+		<a href="adm_tarefa.php?acao=pesquisar" class="btn-form" ><< voltar</a>
+
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}

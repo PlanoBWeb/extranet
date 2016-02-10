@@ -1,0 +1,23 @@
+﻿{include file="admin/topo.html"}
+	<!-- Conteúdo -->
+	<div class="container">
+		<form class="form-ver">
+			<h1 class="titulo-pag">Clientes</h1>
+			<label><strong>Empresa:</strong></label>
+			<input type="text" disabled value="{$dados[0].empresa}">	
+
+			<label><strong>Tipo:</strong></label>
+			<input type="text" disabled value="{$dados[0].nome}">	
+
+			<label><strong>Titulo:</strong></label>
+			<input type="text" disabled value="{$dados[0].titulo}">	
+
+			<label><strong>Descrição:</strong></label>
+			<div class="campo-link-input">{$dados[0].descricao}</div>
+			
+            <br>
+            <a href="javascript:history.back()" class="btn-form" ><< voltar</a>
+		</form>
+	</div>
+	<!-- FIM Conteúdo -->
+{include file="admin/rodape.html"}
